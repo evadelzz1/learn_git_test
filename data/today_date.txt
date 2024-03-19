@@ -1,0 +1,5 @@
+현재 시간(date)을 입력해주세요.
+
+# date
+# date "+%Y/%m/%d %H:%M:%S"
+# date +%s
