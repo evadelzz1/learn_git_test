@@ -1,0 +1,410 @@
+##### 파일 내용 확인하기 ################################################
+
+cat README.md
+
+cat ./today_date.txt
+
+
+##### 미션.day1  ########################################################
+# 1) main branch 가 아닌 경우, main branch 로 이동 (git checkout main)
+# 2) branch list 확인
+# 3) "day1" branch 를 생성하고
+# 4) "day1" branch 로 이동
+#
+# 5) README.md 파일 내부의 v0.0 -> v0.1 로 수정
+# 6) ./today_date.txt 에 현재 일시를 저장 (date)
+# 7) github 에 "day1" branch 로 저장
+#    (git add . / git status / git commit -m "" / git push origin ...)
+#########################################################################
+
+git checkout main
+
+git branch -a       # (나올때 q 키를 누르면 됨)
+
+git branch day1     # branch 생성
+
+git checkout day1   # 해당 branch 로 전환
+
+git branch -a
+
+
+### ===============================
+
+vi README.md
+
+또는
+
+cat README.md | sed 's/\.0/\.1/g'       # sed 's/.0/.1/g'
+
+sed 's/\.0/\.1/g' README.md             # file 내용을 수정하지는 않고, 보여주기만 함
+
+sed -i "" 's/\.0/\.1/g' README.md       # file 내용을 수정함 (-i)
+
+### ===============================
+
+cat README.md
+
+
+date
+
+date > ./today_date.txt
+
+cat ./today_date.txt
+
+
+git add . 
+git status
+git commit -m "set day1"
+git push origin day1
+
+
+##### 미션.day2  ########################################################
+# 1) main branch 가 아닌 경우, main branch 로 이동 (git checkout main)
+# 2) branch list 확인
+# 3) "day2" branch 를 생성하고
+# 4) "day2" branch 로 이동
+#
+# 5) README.md 파일 내부의 v0.0 -> v0.2 로 수정
+# 6) ./today_date.txt 에 현재 일시를 저장
+#    (단,날짜포맷은 2024/01/02 23:59:59 형식으로 저장)
+#    date "+%Y/%m/%d %H:%M:%S"
+# 7) "delete_data" 폴더 삭제
+# 8) github 에 "day2" branch 로 저장
+#    (git add . / git status / git commit -m "" / git push origin ...)
+#########################################################################
+
+git checkout main
+
+git branch -a
+
+git branch day2
+
+git checkout day2
+
+git branch -a
+
+
+### ===============================
+
+vi README.md
+
+또는
+
+cat README.md | sed 's/\.0/\.1/g'       # sed 's/.0/.1/g'
+
+sed 's/\.0/\.2/g' README.md             # file 내용을 수정하지는 않고, 보여주기만 함
+
+sed -i "" 's/\.0/\.2/g' README.md       # file 내용을 수정함 (-i)
+
+### ===============================
+
+cat README.md
+
+
+date "+%Y/%m/%d %H:%M:%S"
+
+date "+%Y/%m/%d %H:%M:%S" > ./today_date.txt
+
+cat ./today_date.txt
+
+
+rm -rf ./delete_data/      # delete folder
+
+ls -l
+
+
+git add .
+git status
+git commit -m "set day2"
+git push origin day2
+
+
+
+##### 미션.day3  ########################################################
+# 1) main branch 가 아닌 경우, main branch 로 이동 (git checkout main)
+# 2) branch list 확인
+# 3) "git checkout -b day3" 명령어를 사용하여 
+#    "day3" branch 를 생성하고 "day3" branch 로 이동
+#
+# 4) README.md 파일 내부의 v0.0 -> v1.0 로 수정
+# 5) ./today_date.txt 에 현재 일시를 저장
+#    (단,날짜포맷은 2024/01/02 23:59:59 형식으로 저장)
+#    date "+%Y/%m/%d %H:%M:%S"
+# 6) "delete_data" 폴더 삭제
+# 7) github 에 "day3" branch 로 저장
+#    (git add . / git status / git commit -m "" / git push origin ...)
+#
+# 8) main branch 로 이동
+# 9) "day3" branch 를 "main" branch 로 병합
+# 10) github 에 "main"  branch 로 저장
+#
+# 11) "day3" branch 삭제 (local storagre)
+# 12) "day3" branch 삭제 (remote storagre)
+#    git branch -d issue1       (local branch 삭제)
+#    git branch -D issue1       (local branch 강제삭제: -D = --delete --force)
+#    git push origin -d issue1  (remote branch 삭제)
+#    git push origin -D issue1  (remote branch 강제삭제)
+# 13) branch list 확인
+#########################################################################
+
+git checkout main
+
+git branch -a
+
+git checkout -b day3    # (= git branch day3 && git checkout day3)
+
+git branch -a
+
+
+### ===============================
+
+vi README.md
+
+또는
+
+sed 's/0\./1\./g' README.md             # file 내용을 수정하지는 않고, 보여주기만 함
+
+sed -i "" 's/0\./1\./g' README.md       # file 내용을 수정함 (-i)
+
+### ===============================
+
+cat README.md
+
+
+date "+%Y/%m/%d %H:%M:%S" > ./today_date.txt
+
+cat ./today_date.txt
+
+
+rm -rf ./delete_data/
+
+ls -l
+
+
+git add .
+git status
+git commit -m "set day3"
+git push origin day3
+
+
+# main 브랜치에 day3 내용을 병합(merge)
+
+git checkout main
+
+git merge day3
+
+ls -l
+
+git status
+
+git push origin main
+
+git status
+
+
+# day3 브랜치 삭제
+
+git branch -a
+
+git branch -d day3         # delete branch (local storage)
+
+git push origin -d day3    # delete branch (remote storage)
+
+git branch -a
+
+
+##### 미션.tag  #########################################################
+# 1) main branch 가 아닌 경우, main branch 로 이동 (git checkout main)
+# 2) branch list 확인
+# 3) tag list 확인
+# 4) "main" branch 에 "v1.0" tag 설정
+# 5) "v1.0" tag 의 commit hash 확인
+# 6) github 에 "v1.0" tag 올리기
+#########################################################################
+
+git checkout main
+
+git tag
+
+git tag v1.0 -m "ver1.0"
+
+git tag -n
+
+git show v1.0
+
+git push origin v1.0
+
+git ls-remote --tags origin
+
+
+##### 미션.day4  ########################################################
+# 1) main branch 가 아닌 경우, main branch 로 이동 (git checkout main)
+# 2) branch list 확인
+# 3) "git checkout -b day4" 명령어를 사용하여
+#    "day4" branch 를 생성하고 "day4" branch 로 이동
+#
+# 4) README.md 파일 내부의 v1.0 -> v1.1 로 수정
+# 5) ./today_date.txt 에 현재 일시를 저장
+#    (단,날짜포맷은 2024/01/02 23:59:59 형식으로 저장)
+#    date "+%Y/%m/%d %H:%M:%S"
+# 6) "new_data" 폴더 생성
+# 7) github 에 "day4" branch 로 저장
+#    (git add . / git status / git commit -m "" / git push origin ...)
+#
+# 8) main branch 로 이동
+# 9) "day4" branch 를 "main" branch 로 병합
+# 10) github 에 "main"  branch 로 저장
+#
+# 11) "day4" branch 삭제 (local storagre)
+# 12) "day4" branch 삭제 (remote storagre)
+#    git branch -d issue1       (local branch 삭제)
+#    git branch -D issue1       (local branch 강제삭제: -D = --delete --force)
+#    git push origin -d issue1  (remote branch 삭제)
+#    git push origin -D issue1  (remote branch 강제삭제)
+#
+# 13) branch list 확인
+#########################################################################
+
+git checkout main
+
+git branch -a
+
+git checkout -b day4    # = git branch day3 && git checkout day3
+
+git branch -a
+
+
+vi README.md
+
+cat README.md
+
+
+date "+%Y/%m/%d %H:%M:%S" > ./today_date.txt
+
+cat ./today_date.txt
+
+
+mkdir ./new_data/
+
+ls -l
+
+
+git add .
+git status
+git commit -m "set day4"
+git push origin day4
+
+
+# main 브랜치에 day4 내용을 병합(merge)
+
+git checkout main
+
+git merge day4
+
+ls -l
+
+git status
+
+git push origin main
+
+git status
+
+
+# day4 브랜치 삭제
+
+git branch -a
+
+git branch -d day4         # delete branch (local storage)
+
+git push origin -d day4    # delete branch (remote storage)
+
+git branch -a
+
+
+##### 미션.tag  #########################################################
+# 1) main branch 가 아닌 경우, main branch 로 이동 (git checkout main)
+# 2) branch list 확인
+# 3) tag list 확인
+# 4) "main" branch 에 "v1.1" tag 설정
+# 5) "v1.1" tag 의 commit hash 확인
+# 6) github 에 "v1.1" tag 올리기
+#########################################################################
+
+git checkout main
+
+git tag
+
+git tag v1.1 -m "ver1.2"
+
+git tag -n
+
+git push origin v1.1
+
+git ls-remote --tags origin
+
+
+### 수고하셨습니다.
+
+
+
+
+
+#########################################################################
+# Issue1.Sed: 'sed: 1: invalid command code R' on Mac OS X
+#########################################################################
+$ day1  sed -i 's/\.0/\.1/g' README.md
+
+Sed: 'sed: 1: invalid command code R' on Mac OS X
+
+>> https://www.markhneedham.com/blog/2011/01/14/sed-sed-1-invalid-command-code-r-on-mac-os-x/
+
+
+
+#########################################################################
+# Issue2.git add * 로 했을 경우, 아래와 같은 이슈가 발생함
+#########################################################################
+>> reference : https://melonicedlatte.com/programming/2018/03/16/202008.html
+>>
+>> 현재 브랜치 day2
+>> 커밋하도록 정하지 않은 변경 사항:
+>>   (무엇을 커밋할지 바꾸려면 "git add/rm <파일>..."을 사용하십시오)
+>>   (use "git restore <file>..." to discard changes in working directory)
+>>   삭제함:        delete_data/readme.txt
+>>
+>> 커밋할 변경 사항을 추가하지 않았습니다 ("git add" 및/또는 "git commit -a"를 사용하십시오)
+>>
+>> ### 파일 이름이 변경되거나 삭제가 되면, git add . 명령어를 이용해도 서버에 반영이 되지 않음.
+>> ### 불필요한 파일은 지워 주는게 좋기 때문에, "git add -u" 명령어를 사용 (-u 옵션의 의미는 update tracked files)
+
+git add -u
+
+git status
+git commit -m "update tracked files"
+git push origin day2
+
+#########################################################################
+
+
+
+##### date +FORMAT 형식으로 사용 (대소문자 주의) ########################
+#
+# date "+%Y/%m/%d %H:%M:%S"
+# date "+%Y-%m-%d %H:%M:%S"
+# date "+%Y-%m-%d %I:%M:%S %p"
+# date +%s
+#
+# 년: %Y
+# 월: %m
+# 일: %d
+# 시: %H 24시간, %I 12시간
+# 분: %M
+# 초: %S
+# 오전/오후: %p
+# unix timestamp: %s(소문자)
+#
+# date -d "-1 days"  : 어제 날짜 구하기
+# date -d "-1 weeks" : 한주 전 날짜 구하기
+# date -d "+3 days"  : 3일 후
+#
+#########################################################################
+
